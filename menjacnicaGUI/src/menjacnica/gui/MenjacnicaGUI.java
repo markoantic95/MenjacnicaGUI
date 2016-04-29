@@ -12,6 +12,9 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import menjacnica.models.MenjacnicaTableModel;
+
 import javax.swing.JTable;
 import java.awt.Window.Type;
 import javax.swing.JMenuBar;
@@ -105,7 +108,7 @@ public class MenjacnicaGUI extends JFrame {
 		JMenuItem mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
 		popupMenu.add(mntmIzvrsiZamenu);
 		
-		table = new JTable();
+		table = getTable();
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
@@ -131,6 +134,15 @@ public class MenjacnicaGUI extends JFrame {
 		JTextPane textPane = new JTextPane();
 		textPane.setBorder(new TitledBorder(null, "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrollPane_1.setViewportView(textPane);
+	}
+	private JTable getTable(){
+		if (table == null) {
+			table = new JTable();
+		
+		MenjacnicaTableModel model = new MenjacnicaTableModel();
+		table.setModel(model);
+		}
+		return table;
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
