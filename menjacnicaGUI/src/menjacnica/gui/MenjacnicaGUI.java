@@ -45,6 +45,7 @@ public class MenjacnicaGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private JPopupMenu popupMenu ;
 	private JTextPane textPane;
 
 	/**
@@ -118,8 +119,7 @@ public class MenjacnicaGUI extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
-		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(scrollPane, popupMenu);
+		 popupMenu = new JPopupMenu();
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Dodaj kurs");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
@@ -130,6 +130,11 @@ public class MenjacnicaGUI extends JFrame {
 		popupMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Izbrisi kurs");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIKontroler.obrisiRed();
+			}
+		});
 		popupMenu.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
@@ -179,6 +184,7 @@ public class MenjacnicaGUI extends JFrame {
 		
 		MenjacnicaTableModel model = new MenjacnicaTableModel(GUIKontroler.vratiSveKurseve());
 		table.setModel(model);
+		addPopup(table, popupMenu);
 		}
 		return table;
 	}
