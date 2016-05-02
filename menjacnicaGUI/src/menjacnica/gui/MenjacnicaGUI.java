@@ -15,7 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+
 import menjacnica.models.MenjacnicaTableModel;
+import menjacnica1.Kurs;
 
 import javax.swing.JTable;
 import java.awt.Window.Type;
@@ -120,6 +122,11 @@ public class MenjacnicaGUI extends JFrame {
 		addPopup(scrollPane, popupMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Dodaj kurs");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIKontroler.otvoriProzorZaDodavanje();
+			}
+		});
 		popupMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Izbrisi kurs");
@@ -137,6 +144,12 @@ public class MenjacnicaGUI extends JFrame {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnNewButton = new JButton("Dodaj kurs");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIKontroler.otvoriProzorZaDodavanje();
+				
+			}
+		});
 		btnNewButton.setPreferredSize(new Dimension(100, 23));
 		panel.add(btnNewButton);
 		
@@ -159,7 +172,7 @@ public class MenjacnicaGUI extends JFrame {
 		if (table == null) {
 			table = new JTable();
 		
-		MenjacnicaTableModel model = new MenjacnicaTableModel();
+		MenjacnicaTableModel model = new MenjacnicaTableModel(GUIKontroler.vratiSveKurseve());
 		table.setModel(model);
 		}
 		return table;
@@ -189,5 +202,13 @@ public class MenjacnicaGUI extends JFrame {
 	public void azurirajStatusSacuvaniFajl(String putanja) {
 		textPane.setText(textPane.getText()+ "Sacuvan fajl: " + putanja+"\n");
 		
+	}
+	public void ispisKursa(Kurs k) {
+		textPane.setText(textPane.getText() + k.toString());
+		
+	}
+	public void osveziTabelu() {
+		MenjacnicaTableModel model = (MenjacnicaTableModel) table.getModel();
+		model.ucitajKurseve(GUIKontroler.vratiSveKurseve());
 	}
 }
