@@ -44,7 +44,8 @@ public class GUIKontroler {
 
 			if (returnVal == fc.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
-				menjacnica.azurirajStatusUcitaniFajl(file.getAbsolutePath());
+				String tekst ="Ucitan fajl: " + file.getAbsolutePath()+".\n";
+				menjacnica.ispisiPoruku(tekst);
 			}
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(menjacnica.getContentPane(), e1.getMessage(), "Greska",
@@ -60,7 +61,8 @@ public class GUIKontroler {
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
-				menjacnica.azurirajStatusSacuvaniFajl(file.getAbsolutePath());
+				String tekst = "Sacuvan fajl: " + file.getAbsolutePath()+".\n";
+				menjacnica.ispisiPoruku(tekst);
 			}
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(menjacnica.getContentPane(), e1.getMessage(), "Greska",
@@ -89,8 +91,8 @@ public class GUIKontroler {
 		dodaj.setLocationRelativeTo(null);
 	}
 
-	public static void dodaj(Kurs k) {
-		menjacnica.ispisKursa(k);
+	public static void dodaj(String tekst) {
+		menjacnica.ispisiPoruku(tekst);
 		menjacnica.osveziTabelu();
 		
 	}
@@ -117,7 +119,8 @@ public class GUIKontroler {
 				kursevi.remove(red);
 				menjacnica.osveziTabelu();
 				JOptionPane.showMessageDialog(menjacnica.getContentPane(), "Uspesno ste obrisali red");
-				menjacnica.ispisiPorukuNakonBrisanja(red);
+				String tekst = "Izbrisan je red sa indeksom: "+red+".\n";
+				menjacnica.ispisiPoruku(tekst);
 			}
 		}
 	}
@@ -126,4 +129,20 @@ public class GUIKontroler {
 		}
 	}
 
+	public static void otvoriProzorZaZamenu() {
+		IzvrsiZamenuGUI zamena = new IzvrsiZamenuGUI();
+		zamena.setVisible(true);
+		zamena.setLocationRelativeTo(null);
+		
+	}
+
+	public static MenjacnicaGUI getMenjacnica() {
+		return menjacnica;
+	}
+
+	public static void setMenjacnica(MenjacnicaGUI menjacnica) {
+		GUIKontroler.menjacnica = menjacnica;
+	}
+
+	
 }

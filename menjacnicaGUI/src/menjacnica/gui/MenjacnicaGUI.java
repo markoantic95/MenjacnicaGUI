@@ -52,6 +52,8 @@ public class MenjacnicaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
+		setMaximumSize(new Dimension(600, 400));
+		setPreferredSize(new Dimension(600, 400));
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -138,13 +140,18 @@ public class MenjacnicaGUI extends JFrame {
 		popupMenu.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
+		mntmIzvrsiZamenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIKontroler.otvoriProzorZaZamenu();
+			}
+		});
 		popupMenu.add(mntmIzvrsiZamenu);
 		
 		table = getTable();
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(120, 10));
+		panel.setPreferredSize(new Dimension(130, 10));
 		contentPane.add(panel, BorderLayout.EAST);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -155,7 +162,7 @@ public class MenjacnicaGUI extends JFrame {
 				
 			}
 		});
-		btnNewButton.setPreferredSize(new Dimension(100, 23));
+		btnNewButton.setPreferredSize(new Dimension(120, 23));
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Izbri\u0161i kurs");
@@ -164,11 +171,16 @@ public class MenjacnicaGUI extends JFrame {
 				GUIKontroler.obrisiRed();
 			}
 		});
-		btnNewButton_1.setPreferredSize(new Dimension(100, 23));
+		btnNewButton_1.setPreferredSize(new Dimension(120, 23));
 		panel.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Izvr\u0161i zamenu");
-		btnNewButton_2.setPreferredSize(new Dimension(100, 23));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIKontroler.otvoriProzorZaZamenu();
+			}
+		});
+		btnNewButton_2.setPreferredSize(new Dimension(120, 23));
 		panel.add(btnNewButton_2);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -206,18 +218,7 @@ public class MenjacnicaGUI extends JFrame {
 			}
 		});
 	}
-	public void azurirajStatusUcitaniFajl(String putanja) {
-		textPane.setText(textPane.getText()+ "Ucitan fajl: " + putanja+"\n");
-		
-	}
-	public void azurirajStatusSacuvaniFajl(String putanja) {
-		textPane.setText(textPane.getText()+ "Sacuvan fajl: " + putanja+"\n");
-		
-	}
-	public void ispisKursa(Kurs k) {
-		textPane.setText(textPane.getText() + k.toString());
-		
-	}
+	
 	public void osveziTabelu() {
 		MenjacnicaTableModel model = (MenjacnicaTableModel) table.getModel();
 		model.ucitajKurseve(GUIKontroler.vratiSveKurseve());
@@ -226,8 +227,9 @@ public class MenjacnicaGUI extends JFrame {
 		return table.getSelectedRow();
 		
 	}
-	public void ispisiPorukuNakonBrisanja(int red) {
-		textPane.setText(textPane.getText()+ "Izbrisan je red sa indeksom: " + red+"\n");
+
+	public void ispisiPoruku(String tekst) {
+		textPane.setText(textPane.getText()+ tekst);
 		
 	}
 }

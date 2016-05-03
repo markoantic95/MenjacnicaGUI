@@ -148,7 +148,8 @@ public class DodajKursGUI extends JFrame {
 				k.setSifra(textFieldSifra.getText());
 				k.setSkraceniNaziv(textFieldSkraceni.getText());
 				GUIKontroler.dodajUListu(k);
-				GUIKontroler.dodaj(k);
+				String tekst = k.toString();
+				GUIKontroler.dodaj(tekst);
 				
 				dispose();
 			}

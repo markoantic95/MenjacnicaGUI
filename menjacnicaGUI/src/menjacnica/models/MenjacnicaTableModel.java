@@ -9,7 +9,7 @@ import menjacnica1.Kurs;
 
 public class MenjacnicaTableModel extends AbstractTableModel {
 
-	private String[] kolone = new String[]{"Sifra","Skraceni naziv","Prodajni","Srednji","Kupovni","Naziv"};
+	private String[] kolone = new String[]{"Šifra","Skraæeni naziv","Prodajni","Srednji","Kupovni","Naziv"};
 	private LinkedList<Kurs> kursevi;
 	
 	public MenjacnicaTableModel(LinkedList<Kurs> kursevi) {
